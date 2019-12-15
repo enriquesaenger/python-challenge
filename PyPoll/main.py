@@ -3,6 +3,8 @@ import csv
 
 csv_path = os.path.join("Resources", "election_data.csv")
 
+# Need to make a list that appends candidates
+
 # variables
 candidate1 = "Khan"
 candidate2 = "Correy"
@@ -14,13 +16,8 @@ candidate2_total = 0
 candidate3_total = 0
 candidate4_total = 0
 
-# temporary variables
-khanPercent = 0
-correyPercent = 0
-liPercent = 0
-otooleyPercent = 0
+# dummy variable for Winner
 winner = "Yo momma"
-#
 
 # open csv file
 with open(csv_path, newline="") as csvfile:
@@ -52,10 +49,22 @@ candidate3_percent = candidate3_total / totalVotes * 100
 candidate4_percent = candidate4_total / totalVotes * 100
 
 # round percentages
-candidate1_round = candidate1_percent.__round__(2)
+candidate1_round = candidate1_percent.__round__(3)
 candidate2_round = candidate2_percent.__round__(3)
 candidate3_round = candidate3_percent.__round__(3)
 candidate4_round = candidate4_percent.__round__(3)
+
+'''
+# calculate winner
+# list of candidates and votes
+candidatesList = [candidate1, candidate2, candidate3, candidate4]
+votesList = [candidate1_total, candidate2_total,
+             candidate3_total, candidate4_total]
+votesList_length = len(votesList)
+for candidate in range(1, votesList_length):
+    if votesList[candidate - 1] > votesList[candidate]:
+        winner = candidatesList[candidate - 1]
+'''
 
 # create Election Results Printout
 electionResults = (f"""Election Results
