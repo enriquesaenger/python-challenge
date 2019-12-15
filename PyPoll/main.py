@@ -46,18 +46,18 @@ with open(csv_path, newline="") as csvfile:
             candidate4_total += 1
 
 # calculate percentages
-candidate1_percent = candidate1_total / totalVotes
-candidate2_percent = candidate2_total / totalVotes
-candidate3_percent = candidate3_total / totalVotes
-candidate4_percent = candidate4_total / totalVotes
+candidate1_percent = candidate1_total / totalVotes * 100
+candidate2_percent = candidate2_total / totalVotes * 100
+candidate3_percent = candidate3_total / totalVotes * 100
+candidate4_percent = candidate4_total / totalVotes * 100
 
 # round percentages
-candidate1_round = candidate1_percent.__round__(3)
+candidate1_round = candidate1_percent.__round__(2)
 candidate2_round = candidate2_percent.__round__(3)
 candidate3_round = candidate3_percent.__round__(3)
 candidate4_round = candidate4_percent.__round__(3)
 
-
+# create Election Results Printout
 electionResults = (f"""Election Results
 -------------------------
 Total Votes: {totalVotes}
@@ -69,4 +69,11 @@ Total Votes: {totalVotes}
 -------------------------
 Winner: {winner}
 -------------------------""")
+
+# print Election Results to terminal
 print(electionResults)
+
+# export a text file with electionResults
+file = open("Output/Election Results", "w")
+file.write(electionResults)
+file.close()
