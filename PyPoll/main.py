@@ -83,6 +83,6 @@ Winner: {winner}
 print(electionResults)
 
 # export a text file with electionResults
-file = open("Output/Election Results", "w")
+file = open("Output/Election Results.txt", "w")
 file.write(electionResults)
 file.close()
