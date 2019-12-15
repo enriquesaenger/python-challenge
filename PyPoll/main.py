@@ -1,3 +1,8 @@
+import os
+import csv
+
+csv_path = os.join.path("election_data.csv")
+
 # temporary variables
 totalVotes = 0
 khanTotal = 0
