@@ -11,7 +11,7 @@ candidate4 = "O'Tooley"
 totalVotes = 0
 candidate1_total = 0
 candidate2_total = 0
-canditate3_total = 0
+candidate3_total = 0
 candidate4_total = 0
 
 # temporary variables
@@ -35,31 +35,37 @@ with open(csv_path, newline="") as csvfile:
         # count total number of votes
         totalVotes += 1
 
-        # count total nubmer of votes per Candidate
+        # count total number of votes per Candidate
         if row[2] == candidate1:
             candidate1_total += 1
         elif row[2] == candidate2:
             candidate2_total += 1
         elif row[2] == candidate3:
-            canditate3_total += 1
+            candidate3_total += 1
         elif row[2] == candidate4:
             candidate4_total += 1
 
+# calculate percentages
+candidate1_percent = candidate1_total / totalVotes
+candidate2_percent = candidate2_total / totalVotes
+candidate3_percent = candidate3_total / totalVotes
+candidate4_percent = candidate4_total / totalVotes
 
-khanPercent_round = khanPercent.__round__(3)
-correyPercent_round = correyPercent.__round__(3)
-liPercent_round = liPercent.__round__(3)
-otooleyPercent_round = otooleyPercent.__round__(3)
+# round percentages
+candidate1_round = candidate1_percent.__round__(3)
+candidate2_round = candidate2_percent.__round__(3)
+candidate3_round = candidate3_percent.__round__(3)
+candidate4_round = candidate4_percent.__round__(3)
 
 
 electionResults = (f"""Election Results
 -------------------------
 Total Votes: {totalVotes}
 -------------------------
-Khan: {khanPercent_round}% ({khanTotal})
-Correy: {correyPercent_round}% ({correyTotal})
-Li: {liPercent_round}% ({liTotal})
-O'Tooley: {otooleyPercent_round}% ({otooleyTotal})
+{candidate1}: {candidate1_round}% ({candidate1_total})
+{candidate2}: {candidate2_round}% ({candidate2_total})
+{candidate3}: {candidate3_round}% ({candidate3_total})
+{candidate4}: {candidate4_round}% ({candidate4_total})
 -------------------------
 Winner: {winner}
 -------------------------""")
