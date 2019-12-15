@@ -1,19 +1,82 @@
-#Dummy Variables
-totalMonths = 86
-total = 38382578
-averageChange = -2315.12
-greatestIncrease = "Feb-2012 ($1926159)"
-greatestDecrease = "Sep-2013 ($-2196167)"
+import os
+import csv
 
+# define path for csv
+csvpath = os.path.join("Resources", "budget_data.csv")
 
+# lists to compare values
+profitColumn = []
+monthColumn = []
+changesList = []
 
-s = f"""
-Financial Analysis
-{ '-' * 28}
-Total Months: {totalMonths}
+# define variables
+months = 0
+total = 0
+totalChange = 0
+greatestProfit = 0
+greatestLoss = 0
+
+# open csv
+with open(csvpath, newline="") as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=",")
+
+    # skip header row
+    header = next(csvreader)
+
+    # loop through rows in csvreader
+    for row in csvreader:
+
+        # count number of months
+        months += 1
+
+        # find currentProfit
+        currentProfit_month = row[0]
+        currentProfit_value = row[1]
+
+        # add up total Profit/Losses
+        total += int(currentProfit_value)
+
+        # write to profitColumn
+        profitColumn.append(currentProfit_value)
+        monthColumn.append(currentProfit_month)
+
+    # calculate length of profitColumn
+    profitColumn_length = len(profitColumn)
+
+    # loop through profitColumn to calculate change
+    for profit in range(1, profitColumn_length):
+        change = int(profitColumn[profit]) - int(profitColumn[profit - 1])
+
+        # Calculate greatest increase in profits and
+        # greatest decrease in profits
+        if change > greatestProfit:
+            greatestProfit = change
+            greatestProfit_month = monthColumn[profit]
+        elif change < greatestLoss:
+            greatestLoss = change
+            greatestLoss_month = monthColumn[profit]
+
+        # add change to totalChange
+        totalChange += change
+
+# calculate averageChange
+averageChange = totalChange / (months - 1)
+# round averageChange
+averageChange_rounded = averageChange.__round__(2)
+
+# create financialAnalysis printout
+financialAnalysis = (f"""Financial Analysis
+----------------------------
+Total Months: {months}
 Total: ${total}
-Average Change: ${averageChange}
-Greatest Increase in Profits: {greatestIncrease}
-Greatest Decrease in Profits: {greatestDecrease}
-"""
-print(s)
+Average Change: ${averageChange_rounded}
+Greatest Increase in Profits: {greatestProfit_month} (${greatestProfit})
+Greatest Decrease in Profits: {greatestLoss_month} (${greatestLoss})""")
+
+# print financialAnalysis to terminal
+print(financialAnalysis)
+
+# export a text file with financialAnalysis
+file = open("Financial Analysis.txt", "w")
+file.write(financialAnalysis)
+file.close()
