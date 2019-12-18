@@ -7,9 +7,8 @@ csvpath = os.path.join("Resources", "budget_data.csv")
 # lists to compare values
 profitColumn = []
 monthColumn = []
-changesList = []
 
-# define variables
+# initialize variables
 months = 0
 total = 0
 totalChange = 0
@@ -36,7 +35,7 @@ with open(csvpath, newline="") as csvfile:
         # add up total Profit/Losses
         total += int(currentProfit_value)
 
-        # write to profitColumn
+        # append to profitColumn and monthColumn
         profitColumn.append(currentProfit_value)
         monthColumn.append(currentProfit_month)
 
@@ -77,6 +76,6 @@ Greatest Decrease in Profits: {greatestLoss_month} (${greatestLoss})""")
 print(financialAnalysis)
 
 # export a text file with financialAnalysis
-file = open("Output/Financial Analysis.txt", "w")
-file.write(financialAnalysis)
-file.close()
+f = open("Output/Financial Analysis.txt", "w+")
+f.write(financialAnalysis)
+f.close()
