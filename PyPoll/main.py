@@ -4,7 +4,9 @@ import csv
 csv_path = os.path.join("Resources", "election_data.csv")
 
 # Need to make a list that appends candidates
-
+candidateDict = {}
+totalVotes = 0
+'''
 # variables
 candidate1 = "Khan"
 candidate2 = "Correy"
@@ -15,6 +17,7 @@ candidate1_total = 0
 candidate2_total = 0
 candidate3_total = 0
 candidate4_total = 0
+'''
 
 # dummy variable for Winner
 winner = "Yo momma"
@@ -32,15 +35,25 @@ with open(csv_path, newline="") as csvfile:
         # count total number of votes
         totalVotes += 1
 
-        # count total number of votes per Candidate
-        if row[2] == candidate1:
-            candidate1_total += 1
-        elif row[2] == candidate2:
-            candidate2_total += 1
-        elif row[2] == candidate3:
-            candidate3_total += 1
-        elif row[2] == candidate4:
-            candidate4_total += 1
+        # variable for name in current row
+        name = row[0]
+        '''
+        for name in candidateDict:
+            if candidateDict[name] != name:
+                candidateDict[name] = name
+            else:
+                candidateDict[name] += 1
+
+                # count total number of votes per Candidate
+                if row[2] == candidateDict[name]:
+                    candidate1_total += 1
+                elif row[2] == candidate2:
+                    candidate2_total += 1
+                elif row[2] == candidate3:
+                    candidate3_total += 1
+                elif row[2] == candidate4:
+                    candidate4_total += 1
+                '''
 
 # calculate percentages
 candidate1_percent = candidate1_total / totalVotes * 100
