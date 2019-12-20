@@ -76,6 +76,6 @@ Greatest Decrease in Profits: {greatestLoss_month} (${greatestLoss})""")
 print(financialAnalysis)
 
 # export a text file with financialAnalysis
-f = open("Output/Financial Analysis.txt", "w+")
+f = open("Financial Analysis.txt", "w+")
 f.write(financialAnalysis)
 f.close()

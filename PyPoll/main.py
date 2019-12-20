@@ -46,7 +46,7 @@ for candidate in candidateDict:
     # calculate individual percentage and assign to percent
     percent = (candidateDict[candidate] / totalVotes) * 100
     # round percent
-    round = percent.__round__()
+    round = percent.__round__(3)
     # add each candidate's results to electionResults
     electionResults += candidate + ": " + '%.3f'%round + "%" \
         + " (" + str(candidateDict[candidate]) + ")" + '\n'
@@ -60,6 +60,6 @@ electionResults += "-------------------------" + '\n' \
 print(electionResults)
 
 # create and print electionResults to txt file
-f = open("Output/Election Results.txt", "w+")
+f = open("Election Results.txt", "w+")
 f.write(electionResults)
 f.close()
