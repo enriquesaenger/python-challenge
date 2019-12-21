@@ -1,4 +1,6 @@
 import os
+import os.path
+from os import path
 import csv
 
 # define path for csv
@@ -76,6 +78,12 @@ Greatest Decrease in Profits: {greatestLoss_month} (${greatestLoss})""")
 print(financialAnalysis)
 
 # export a text file with financialAnalysis
-f = open("Financial Analysis.txt", "w+")
+if os.path.exists("Output") == True:
+    path = os.path.join("Output", "Financial Analysis.txt")
+    f = open(path, "w+")
+else:
+    os.mkdir("Output")
+    path = os.path.join("Output", "Financial Analysis.txt")
+    f = open(path, "w+")
 f.write(financialAnalysis)
 f.close()
