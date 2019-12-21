@@ -1,4 +1,6 @@
 import os
+import os.path
+from os import path
 import csv
 
 csv_path = os.path.join("Resources", "election_data.csv")
@@ -59,7 +61,22 @@ electionResults += "-------------------------" + '\n' \
 # print electionResults
 print(electionResults)
 
-# create and print electionResults to txt file
-f = open("Election Results.txt", "w+")
+# export a text file with electionResults
+# check if Output folder exists
+if os.path.exists("Output") == True:
+    # join Output and Election Results.txt
+    path = os.path.join("Output", "Election Results.txt")
+    # create file
+    f = open(path, "w+")
+# if Output folder does not exist
+else:
+    # create Output folder
+    os.mkdir("Output")
+    # join Output and Election Results.txt
+    path = os.path.join("Output", "Election Results.txt")
+    # create file
+    f = open(path, "w+")
+# write electionResults to Election Results.txt
 f.write(electionResults)
+# close .txt file
 f.close()
