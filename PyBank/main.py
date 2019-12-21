@@ -79,20 +79,14 @@ print(financialAnalysis)
 
 # export a text file with financialAnalysis
 # check if Output folder exists
-if os.path.exists("Output") == True:
-    # join Output and Financial Analysis.txt
-    path = os.path.join("Output", "Financial Analysis.txt")
-    # create file
-    f = open(path, "w+")
-# if Output folder does not exist
-else:
-    # create Output folder
+if os.path.exists("Output") == False:
+    # create Output folder if it doesn't exist
     os.mkdir("Output")
-    # join Output and Financial Analysis.txt
-    path = os.path.join("Output", "Financial Analysis.txt")
-    # create file
-    f = open(path, "w+")
-# write financialAnalysis to Financial Analysis.txt
+# join Output and Financial Analysis.txt
+path = os.path.join("Output", "Financial Analysis.txt")
+# create file
+f = open(path, "w+")
+# write financialAnalysis to file
 f.write(financialAnalysis)
-# close .txt file
+# close file
 f.close()

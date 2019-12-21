@@ -63,20 +63,14 @@ print(electionResults)
 
 # export a text file with electionResults
 # check if Output folder exists
-if os.path.exists("Output") == True:
-    # join Output and Election Results.txt
-    path = os.path.join("Output", "Election Results.txt")
-    # create file
-    f = open(path, "w+")
-# if Output folder does not exist
-else:
-    # create Output folder
+if os.path.exists("Output") == False:
+    # create Output folder if it doesn't exist
     os.mkdir("Output")
-    # join Output and Election Results.txt
-    path = os.path.join("Output", "Election Results.txt")
-    # create file
-    f = open(path, "w+")
-# write electionResults to Election Results.txt
+# join Output and Election Results.txt
+path = os.path.join("Output", "Election Results.txt")
+# create file
+f = open(path, "w+")
+# write electionResults to file
 f.write(electionResults)
-# close .txt file
+# close file
 f.close()
